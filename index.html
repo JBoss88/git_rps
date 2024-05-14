@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin RPS</title>
+</head>
+<body>
+  <script>
+    function getHumanChoice() {
+      let humanChoice = prompt('Choose rock, paper, or scissors!!', '');
+      console.log(humanChoice);
+    }
+
+
+    function getComputerChoice() {
+      let choice = Math.floor(Math.random() * 3);
+
+      if (choice === 0) {
+        return 'rock';
+      } else if (choice === 1) {
+        return 'paper';
+      } else {
+        return 'scissors';
+      }
+
+    }  console.log(getComputerChoice());
+
+
+    let computerScore = 0;
+    let humanScore = 0;
+
+  </script>
+</body>
+</html>
