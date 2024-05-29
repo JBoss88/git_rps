@@ -6,69 +6,99 @@
     <title>Odin RPS</title>
 </head>
 <body>
-  <script>
-    function getHumanChoice() {
-      const humanChoice = prompt('Choose rock, paper, or scissors!!', '').toLowerCase();
-      return humanChoice;
-    } 
+  <div class="container">
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+  </div>
+  <div class="outcome"></div>
 
+  <script>
+    
+    const btns = document.querySelectorAll('button');
+    const rockBtn = document.querySelector("#rock");
+    const paperBtn = document.querySelector("#paper");
+    const scissorsBtn = document.querySelector("#scissors");
+    const outcomeDiv = document.querySelector('.outcome');
 
     function getComputerChoice() {
       let choice = Math.floor(Math.random() * 3);
-
       if (choice === 0) {
         return 'rock';
       } else if (choice === 1) {
         return 'paper';
-      } else {
-        return 'scissors';
+        } else {
+          return 'scissors';
+        }
       }
-    }
+    
 
-    let humanScore = 0;
-    let computerScore = 0;
+    function playRound(humanSelection, computerSelection) {
+      let humanScore = 0;
+      let computerScore = 0;
 
-   function playGame() {
-
-    for(let i = 0; i < 5; i++) {
-      const humanSelection = getHumanChoice();
-      const computerSelection = getComputerChoice();
-
-
-    function playRound(humanChoice, computerChoice) {
     if (humanSelection === 'rock' && computerSelection === 'scissors') {
-        console.log('You win! Rock crushes scissors.');
-        return humanScore++;
+        humanScore++;
+        const p = document.createElement('p');
+        p.innerText = 'You win! Rock crushes scissors.'; 
+        outcomeDiv.append(p);
 
     } else if (humanSelection === 'paper' && computerSelection === 'rock') {
-        console.log('You win!! Paper covers rock.');
-        return humanScore++;
+        humanScore++;
+        const p = document.createElement('p');
+        p.innerText = 'You win! Paper covers rock.';
+        outcomeDiv.append(p);
 
     } else if (humanSelection === 'scissors' && computerSelection === 'paper') {
-        console.log('You win!! Scissors cuts paper.');
-        return humanScore++;
+        humanScore++;
+        const p = document.createElement('p');
+        p.innerText = 'You win! Scissors cuts paper.';
+        outcomeDiv.append(p);
 
     } else if (computerSelection === 'rock' && humanSelection === 'scissors') {
-        console.log('You lost!! Rock crushes scissors.');
-        return computerScore++;
+        computerScore++;
+        const p = document.createElement('p');
+        p.innerText = 'You lost! Rock crushes scissors.'
+        outcomeDiv.append(p);
 
     } else if (computerSelection === 'paper' && humanSelection === 'rock') {
-        console.log('You lost!! Paper covers rock.');
-        return computerScore++;
+        computerScore++;
+        const p = document.createElement('p');
+        p.innerText = 'You lost! Paper covers rock.';
+        outcomeDiv.append(p);
 
     } else if (computerSelection === 'scissors' && humanSelection === 'paper') {
-        console.log('You lost!! Scissors cuts paper.');
-        return computerScore++;
-        
+        computerScore++;
+        const p = document.createElement('p');
+        p.innerText = 'You lost! Scissors cuts paper';
+        outcomeDiv.append(p);
+
     } else {
-        console.log('You tied!! Try again.');
+      const p = document.createElement('p');
+      p.innerText = 'You tied!';
+      outcomeDiv.append(p);
     }
-  } 
-    playRound(humanSelection, computerSelection);
-    console.log(humanScore, computerScore); 
+    console.log(humanScore, computerScore);
   }
-}
-playGame(); 
+  
+    rockBtn.addEventListener('click', () => {
+      const computerSelection = getComputerChoice();
+      const humanSelection = 'rock';
+      playRound(humanSelection, computerSelection);
+    });
+
+    paperBtn.addEventListener('click', () => {
+      const computerSelection = getComputerChoice();
+      const humanSelection = 'paper';
+      playRound(humanSelection, computerSelection);
+    });
+
+    scissorsBtn.addEventListener('click', () => {
+      const computerSelection = getComputerChoice();
+      const humanSelection = 'scissors';
+      playRound(humanSelection, computerSelection);
+    });
+   
   </script>
 </body>
 </html>
